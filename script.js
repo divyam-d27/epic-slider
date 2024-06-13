@@ -16,8 +16,8 @@ let currentSlide = 1;
 let maxSlide = previewSlides.length;
 
 // Switch Preview
-
 const switchPreview = function (slide) {
+  previewSlides.forEach((el) => (el.style.zIndex = "0"));
   if (slide === 1) {
     previewSlides[0].style.transform = `translateX(${0}%)`;
     previewSlides[1].style.transform = `translateX(${0}%) scale(1.2)`;
@@ -28,7 +28,7 @@ const switchPreview = function (slide) {
     previewSlides[1].style.transform = `translateX(${-100}%)`;
     previewSlides[2].style.transform = `translateX(${-100}%) scale(1.2)`;
     previewSlides[2].style.zIndex = 12;
-  } else {
+  } else if (slide === 0) {
     previewSlides[0].style.transform = `translateX(${100}%) scale(1.2)`;
     previewSlides[0].style.zIndex = 12;
     previewSlides[1].style.transform = `translateX(${100}%)`;
@@ -37,7 +37,6 @@ const switchPreview = function (slide) {
 };
 
 // Switch Background
-
 const bgSwitch = function (slide) {
   bgImg.classList.add("opacity-0");
   setTimeout(() => {
@@ -58,15 +57,23 @@ const switchSlide = function (slide) {
   bgImg.addEventListener("load", () => {
     slider.classList.remove("hide");
   });
+  switchColor(slide);
   bgSwitch(slide);
   switchPreview(slide);
 };
 
+// Switch primary color
+const switchColor = function (slide) {
+  if (slide === 1)
+    document.documentElement.style.setProperty("--primary-color", "#f32314");
+  if (slide === 2)
+    document.documentElement.style.setProperty("--primary-color", "#ffe81a");
+  if (slide === 0)
+    document.documentElement.style.setProperty("--primary-color", "#17f5f9");
+};
+
 // Move to Previous Slide
-
 const prevSlide = function () {
-  previewSlides[currentSlide].style.zIndex = 0;
-
   if (currentSlide === 0) {
     currentSlide = 2;
   } else {
@@ -76,10 +83,7 @@ const prevSlide = function () {
 };
 
 // Move to Next Slide
-
 const nextSlide = function () {
-  previewSlides[currentSlide].style.zIndex = 0;
-
   if (currentSlide === maxSlide - 1) {
     currentSlide = 0;
   } else {
@@ -88,17 +92,27 @@ const nextSlide = function () {
   switchSlide(currentSlide);
 };
 
+// Event Listeners on Buttons
 prevBtn.addEventListener("click", prevSlide);
 nextBtn.addEventListener("click", nextSlide);
 
-// on arrow keys
+// Event Listeners on arrow keys
 document.addEventListener("keydown", function (e) {
   if (e.key === "ArrowLeft") prevSlide();
   e.key === "ArrowRight" && nextSlide();
 });
 
+// Event Listeners on each preview slide
+previewSlides.forEach((pSlide) => {
+  pSlide.addEventListener("click", (e) => {
+    let slideNum = Number(e.currentTarget.dataset.slideNum);
+    switchSlide(slideNum);
+    currentSlide = slideNum;
+  });
+});
+
+// Initialization function
 (function () {
-  slides[currentSlide].style.zIndex = 1;
   previewSlides[currentSlide].style.transform = `scale(1.2)`;
   previewSlides[currentSlide].style.zIndex = 12;
 })();
