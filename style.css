@@ -275,3 +275,18 @@ html {
 .hide {
   display: none;
 }
+@media (max-width: 768px) {
+  html {
+    font-size: 50%;
+  }
+  .para {
+    padding-right: 0;
+  }
+  .arrow__btn {
+    display: none;
+  }
+  .preview__item {
+    height: 60px;
+    width: 125px;
+  }
+}
