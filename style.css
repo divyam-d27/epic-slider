@@ -282,6 +282,7 @@ html {
   .para {
     padding-right: 0;
     font-size: 1.6rem;
+    line-height: 2;
   }
   .arrow__btn {
     display: none;
@@ -289,5 +290,14 @@ html {
   .preview__item {
     height: 9rem;
     width: 18rem;
+  }
+  .title {
+    margin-bottom: auto;
+  }
+  .item__content {
+    height: 80%;
+  }
+  .title {
+    margin-bottom: 50%;
   }
 }
