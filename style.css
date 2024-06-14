@@ -119,7 +119,7 @@ html {
 .explore__btn > span > svg {
   display: block;
   fill: #fff;
-  height: 18px;
+  height: 1.8rem;
 }
 .explore__btn:hover {
   color: var(--primary-color);
@@ -131,7 +131,7 @@ html {
   border-bottom: 1px solid var(--primary-color);
 }
 .explore__btn:hover > span:last-child {
-  margin-left: 50px;
+  margin-left: 5rem;
 }
 
 /* Text animation */
@@ -207,8 +207,8 @@ html {
 .preview__item {
   box-shadow: 0 3rem 5rem #000;
 
-  height: 120px;
-  width: 250px;
+  height: 12rem;
+  width: 25rem;
   border: 1px solid #d4d4d434;
   position: relative;
   border-radius: 10px;
@@ -281,12 +281,13 @@ html {
   }
   .para {
     padding-right: 0;
+    font-size: 1.6rem;
   }
   .arrow__btn {
     display: none;
   }
   .preview__item {
-    height: 60px;
-    width: 125px;
+    height: 9rem;
+    width: 18rem;
   }
 }
